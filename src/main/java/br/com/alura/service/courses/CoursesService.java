@@ -69,4 +69,15 @@ public class CoursesService {
 
         return coursesPage;
     }
+
+    public Courses findCoursesById(Integer id) {
+        var courseEntity = coursesRepository.findById(id);
+
+        if (courseEntity.isEmpty()) {
+            //TODO fix exception
+            throw new RuntimeException("Course not found");
+        }
+
+        return courseEntity.get();
+    }
 }
