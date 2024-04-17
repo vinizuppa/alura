@@ -5,6 +5,8 @@ import br.com.alura.entity.courses.Courses;
 import br.com.alura.entity.users.Users;
 import br.com.alura.enums.RoleEnum;
 import br.com.alura.enums.StatusEnum;
+import br.com.alura.exceptions.courses.CourseNotFoundException;
+import br.com.alura.exceptions.courses.InvalidUserException;
 import br.com.alura.factory.courses.CoursesFactory;
 import br.com.alura.repository.courses.CoursesRepository;
 import br.com.alura.service.users.UsersService;
@@ -30,15 +32,13 @@ public class CoursesService {
             var courseEntity = CoursesFactory.createCoursesEntity(courseRegisterDTO, instructor);
             coursesRepository.save(courseEntity);
         } catch (Exception e) {
-            //TODO fix exception
             throw e;
         }
     }
 
     private void validateUserIsInstructor(Users users) {
         if (users.getRole() != RoleEnum.INSTRUCTOR) {
-            //TODO fix exception
-            throw new RuntimeException("User is not Instructor");
+            throw new InvalidUserException("User responsible for the course must be an instructor");
         }
     }
 
@@ -48,7 +48,6 @@ public class CoursesService {
             courseEntity.setStatus(StatusEnum.INACTIVE);
             coursesRepository.save(courseEntity);
         } catch (Exception e) {
-            //TODO fix exception
             throw e;
         }
     }
@@ -57,8 +56,7 @@ public class CoursesService {
         var courseEntity = coursesRepository.findCoursesByCode(courseCode);
 
         if (courseEntity == null) {
-            //TODO fix exception
-            throw new RuntimeException("Course not found");
+            throw new CourseNotFoundException("Course not found");
         }
 
         return courseEntity;
@@ -74,8 +72,7 @@ public class CoursesService {
         var courseEntity = coursesRepository.findById(id);
 
         if (courseEntity.isEmpty()) {
-            //TODO fix exception
-            throw new RuntimeException("Course not found");
+            throw new CourseNotFoundException("Course not found");
         }
 
         return courseEntity.get();

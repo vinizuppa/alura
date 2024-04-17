@@ -1,6 +1,7 @@
 package br.com.alura.exceptions.handle;
 
 import br.com.alura.exceptions.ExceptionResponse;
+import br.com.alura.exceptions.courses.InvalidUserException;
 import br.com.alura.exceptions.enrollments.InactiveCourseException;
 import br.com.alura.exceptions.enrollments.UserAlreadyEnrolledInCourseException;
 import org.springframework.http.HttpStatus;
@@ -32,6 +33,15 @@ public class CustomResponseEntityExceptionHandler extends ResponseEntityExceptio
                 request.getDescription(false));
 
         return new ResponseEntity<>(exceptionResponse, HttpStatus.CONFLICT);
+    }
+
+    @ExceptionHandler({InvalidUserException.class})
+    public final ResponseEntity<ExceptionResponse> handleUnprocessableEntityExceptions(Exception ex, WebRequest request) {
+
+        ExceptionResponse exceptionResponse = new ExceptionResponse(new Date(), ex.getMessage(),
+                request.getDescription(false));
+
+        return new ResponseEntity<>(exceptionResponse, HttpStatus.UNPROCESSABLE_ENTITY);
     }
 
 }
