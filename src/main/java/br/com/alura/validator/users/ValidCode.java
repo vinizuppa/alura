@@ -6,18 +6,18 @@ import jakarta.validation.ConstraintValidatorContext;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class ValidUsername implements ConstraintValidator<UsernameValidator, String> {
+public class ValidCode implements ConstraintValidator<CodeValidator, String> {
     @Override
     public boolean isValid(String value, ConstraintValidatorContext constraintValidatorContext) {
-        return this.validLength(value) && this.validPatternUsername(value);
+        return this.validLength(value) && this.validPatternCode(value);
     }
 
     private boolean validLength(String value) {
-        return value.length() <= 20 && value.length() > 0;
+        return value.length() <= 10 && value.length() > 0;
     }
 
-    private boolean validPatternUsername(String value) {
-        String regex = "^[a-z]*$";
+    private boolean validPatternCode(String value) {
+        String regex = "^[a-zA-Z\\-]*$";
 
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(value);

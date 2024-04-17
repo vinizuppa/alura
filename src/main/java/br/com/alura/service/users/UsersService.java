@@ -2,6 +2,7 @@ package br.com.alura.service.users;
 
 import br.com.alura.dto.users.UserRegisterDTO;
 import br.com.alura.dto.users.UserSimpleResponseDTO;
+import br.com.alura.entity.users.Users;
 import br.com.alura.factory.users.UserDTOFactory;
 import br.com.alura.factory.users.UsersFactory;
 import br.com.alura.repository.users.UsersRepository;
@@ -32,5 +33,16 @@ public class UsersService {
         var userSimpleResponseDTO = UserDTOFactory.createUserSimpleResponseDTO(userEntity);
 
         return userSimpleResponseDTO;
+    }
+
+    public Users findUserById(Integer id) {
+        var userEntity = usersRepository.findById(id);
+
+        if (userEntity.isEmpty()) {
+            //TODO fix exception
+            throw new RuntimeException("User not found");
+        }
+
+        return userEntity.get();
     }
 }

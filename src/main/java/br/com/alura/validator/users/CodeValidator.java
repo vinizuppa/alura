@@ -8,11 +8,11 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-@Constraint(validatedBy = ValidUsername.class)
+@Constraint(validatedBy = ValidCode.class)
 @Target({ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface UsernameValidator {
-    String message() default "Invalid username";
+public @interface CodeValidator {
+    String message() default "Invalid code";
     Class<?> [] groups() default {};
     Class<? extends Payload> [] payload() default {};
 }
