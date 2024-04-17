@@ -8,6 +8,8 @@ import br.com.alura.enums.StatusEnum;
 import br.com.alura.factory.courses.CoursesFactory;
 import br.com.alura.repository.courses.CoursesRepository;
 import br.com.alura.service.users.UsersService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -60,5 +62,11 @@ public class CoursesService {
         }
 
         return courseEntity;
+    }
+
+    public Page<Courses> getAllCoursesByStatus(Pageable pageable, StatusEnum status) {
+        var coursesPage = coursesRepository.findCoursesByStatus(status, pageable);
+
+        return coursesPage;
     }
 }
