@@ -1,9 +1,11 @@
 package br.com.alura.exceptions.handle;
 
 import br.com.alura.exceptions.ExceptionResponse;
+import br.com.alura.exceptions.courses.CourseNotFoundException;
 import br.com.alura.exceptions.courses.InvalidUserException;
 import br.com.alura.exceptions.enrollments.InactiveCourseException;
 import br.com.alura.exceptions.enrollments.UserAlreadyEnrolledInCourseException;
+import br.com.alura.exceptions.users.UserNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -42,6 +44,15 @@ public class CustomResponseEntityExceptionHandler extends ResponseEntityExceptio
                 request.getDescription(false));
 
         return new ResponseEntity<>(exceptionResponse, HttpStatus.UNPROCESSABLE_ENTITY);
+    }
+
+    @ExceptionHandler({CourseNotFoundException.class, UserNotFoundException.class})
+    public final ResponseEntity<ExceptionResponse> handleNotFoundExceptions(Exception ex, WebRequest request) {
+
+        ExceptionResponse exceptionResponse = new ExceptionResponse(new Date(), ex.getMessage(),
+                request.getDescription(false));
+
+        return new ResponseEntity<>(exceptionResponse, HttpStatus.NOT_FOUND);
     }
 
 }
