@@ -28,7 +28,7 @@ public class EnrollmentsService {
     public void registerEnrollment(EnrollmentRegisterDTO enrollmentRegisterDTO) {
         try {
             var userEntity = usersService.findUserById(enrollmentRegisterDTO.user_id());
-            var courseEntity = coursesService.findCoursesById(enrollmentRegisterDTO.course_id());
+            var courseEntity = coursesService.findCourseById(enrollmentRegisterDTO.course_id());
 
             this.validateUserIsEnrolled(userEntity.getId(), courseEntity.getId());
             this.validateCourseIsInactive(courseEntity);

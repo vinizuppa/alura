@@ -68,7 +68,7 @@ public class CoursesService {
         return coursesPage;
     }
 
-    public Courses findCoursesById(Integer id) {
+    public Courses findCourseById(Integer id) {
         var courseEntity = coursesRepository.findById(id);
 
         if (courseEntity.isEmpty()) {
