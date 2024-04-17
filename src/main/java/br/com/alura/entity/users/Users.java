@@ -3,10 +3,7 @@ package br.com.alura.entity.users;
 import br.com.alura.enums.RoleEnum;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -17,6 +14,7 @@ import java.time.ZoneId;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
+@Setter
 public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
