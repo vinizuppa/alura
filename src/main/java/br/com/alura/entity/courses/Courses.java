@@ -3,7 +3,6 @@ package br.com.alura.entity.courses;
 import br.com.alura.entity.users.Users;
 import br.com.alura.enums.StatusEnum;
 import jakarta.persistence.*;
-import jdk.jshell.Snippet;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
