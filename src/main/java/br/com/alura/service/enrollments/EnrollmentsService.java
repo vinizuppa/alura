@@ -3,6 +3,8 @@ package br.com.alura.service.enrollments;
 import br.com.alura.dto.enrollments.EnrollmentRegisterDTO;
 import br.com.alura.entity.courses.Courses;
 import br.com.alura.enums.StatusEnum;
+import br.com.alura.exceptions.enrollments.InactiveCourseException;
+import br.com.alura.exceptions.enrollments.UserAlreadyEnrolledInCourseException;
 import br.com.alura.factory.enrollments.EnrollmentsFactory;
 import br.com.alura.repository.enrollments.EnrollmentsRepository;
 import br.com.alura.service.courses.CoursesService;
@@ -34,7 +36,6 @@ public class EnrollmentsService {
             var enrollmentEntity = EnrollmentsFactory.createEnrollmentsEntity(userEntity, courseEntity);
             enrollmentsRepository.save(enrollmentEntity);
         } catch (Exception e) {
-            //TODO fix Exception
             throw e;
         }
     }
@@ -43,15 +44,13 @@ public class EnrollmentsService {
         var enrollment = enrollmentsRepository.findEnrollmentByCoursesIdAndUsersId(userId, courseId);
 
         if (enrollment != null) {
-            //TODO fix Exception
-            throw new RuntimeException("User is already enrolled");
+            throw new UserAlreadyEnrolledInCourseException("User is already enrolled");
         }
     }
 
     private void validateCourseIsInactive(Courses courses) {
         if (courses.getStatus().equals(StatusEnum.INACTIVE)) {
-            //TODO fix Exception
-            throw new RuntimeException("Course is inactive");
+            throw new InactiveCourseException("Course is inactive");
         }
     }
 }
