@@ -1,6 +1,8 @@
 package br.com.alura.service.courseEvaluation;
 
 import br.com.alura.dto.courseEvaluation.CourseEvaluationRegisterDTO;
+import br.com.alura.entity.courseEvaluation.CourseEvaluation;
+import br.com.alura.entity.emailSender.EmailSender;
 import br.com.alura.exceptions.courseEvaluation.UserNotEnrolledInCourseException;
 import br.com.alura.exceptions.enrollments.UserAlreadyEnrolledInCourseException;
 import br.com.alura.factory.courseEvaluation.CourseEvaluationFactory;
@@ -18,6 +20,7 @@ public class CourseEvaluationService {
     private final CoursesService coursesService;
     private final EnrollmentsService enrollmentsService;
 
+    private final Integer DETRACTING_NOTE = 6;
     public CourseEvaluationService(CourseEvaluationRepository courseEvaluationRepository,
                                    UsersService usersService,
                                    CoursesService coursesService,
@@ -38,6 +41,7 @@ public class CourseEvaluationService {
         var courseEvalutionEntity = CourseEvaluationFactory.createCourseEvaluationEntity(courseEvaluationRegisterDTO, courseEntity, userEntity);
 
         courseEvaluationRepository.save(courseEvalutionEntity);
+        this.sendEmailIfNecessary(courseEvalutionEntity);
     }
 
     private void validateUserHasAlreadyEvaluated(Integer userId, Integer courseId) {
@@ -53,6 +57,14 @@ public class CourseEvaluationService {
 
         if (enrollmentEntity == null) {
             throw new UserNotEnrolledInCourseException("User not enrolled in the course");
+        }
+    }
+
+    private void sendEmailIfNecessary(CourseEvaluation courseEvaluation) {
+        if (courseEvaluation.getScore() <= DETRACTING_NOTE) {
+            EmailSender.send(courseEvaluation.getCourses().getInstructor().getEmail(),
+                    "Detracting Evaluation for Course: " + courseEvaluation.getCourses().getName(),
+                            "Score: " + courseEvaluation.getScore() + "|" + "Reason: " + courseEvaluation.getReason());
         }
     }
 }
