@@ -10,6 +10,7 @@ import br.com.alura.factory.enrollments.EnrollmentsFactory;
 import br.com.alura.repository.enrollments.EnrollmentsRepository;
 import br.com.alura.service.courses.CoursesService;
 import br.com.alura.service.users.UsersService;
+import br.com.alura.utils.FunctionUtils;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -28,7 +29,7 @@ public class EnrollmentsService {
 
     public void registerEnrollment(EnrollmentRegisterDTO enrollmentRegisterDTO) {
         try {
-            var userEntity = usersService.findUserById(enrollmentRegisterDTO.user_id());
+            var userEntity = FunctionUtils.getLoggedUser();
             var courseEntity = coursesService.findCourseById(enrollmentRegisterDTO.course_id());
 
             this.validateUserIsEnrolled(userEntity.getId(), courseEntity.getId());
