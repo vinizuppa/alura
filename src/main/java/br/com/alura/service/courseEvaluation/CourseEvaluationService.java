@@ -61,7 +61,7 @@ public class CourseEvaluationService {
     }
 
     private void sendEmailIfNecessary(CourseEvaluation courseEvaluation) {
-        if (courseEvaluation.getScore() <= DETRACTING_NOTE) {
+        if (courseEvaluation.getScore() < DETRACTING_NOTE) {
             EmailSender.send(courseEvaluation.getCourses().getInstructor().getEmail(),
                     "Detracting Evaluation for Course: " + courseEvaluation.getCourses().getName(),
                             "Score: " + courseEvaluation.getScore() + "|" + "Reason: " + courseEvaluation.getReason());
