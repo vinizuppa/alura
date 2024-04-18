@@ -1,6 +1,8 @@
 package br.com.alura.exceptions.handle;
 
 import br.com.alura.exceptions.ExceptionResponse;
+import br.com.alura.exceptions.courseEvaluation.UserAlreadyEvaluatedCourseException;
+import br.com.alura.exceptions.courseEvaluation.UserNotEnrolledInCourseException;
 import br.com.alura.exceptions.courses.CourseNotFoundException;
 import br.com.alura.exceptions.courses.InvalidUserException;
 import br.com.alura.exceptions.enrollments.InactiveCourseException;
@@ -28,7 +30,7 @@ public class CustomResponseEntityExceptionHandler extends ResponseEntityExceptio
         return new ResponseEntity<>(exceptionResponse, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-    @ExceptionHandler({InactiveCourseException.class, UserAlreadyEnrolledInCourseException.class})
+    @ExceptionHandler({InactiveCourseException.class, UserAlreadyEnrolledInCourseException.class, UserAlreadyEvaluatedCourseException.class})
     public final ResponseEntity<ExceptionResponse> handleConflictExceptions(Exception ex, WebRequest request) {
 
         ExceptionResponse exceptionResponse = new ExceptionResponse(new Date(), ex.getMessage(),
@@ -46,7 +48,7 @@ public class CustomResponseEntityExceptionHandler extends ResponseEntityExceptio
         return new ResponseEntity<>(exceptionResponse, HttpStatus.UNPROCESSABLE_ENTITY);
     }
 
-    @ExceptionHandler({CourseNotFoundException.class, UserNotFoundException.class})
+    @ExceptionHandler({CourseNotFoundException.class, UserNotFoundException.class, UserNotEnrolledInCourseException.class})
     public final ResponseEntity<ExceptionResponse> handleNotFoundExceptions(Exception ex, WebRequest request) {
 
         ExceptionResponse exceptionResponse = new ExceptionResponse(new Date(), ex.getMessage(),

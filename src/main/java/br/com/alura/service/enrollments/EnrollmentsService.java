@@ -2,6 +2,7 @@ package br.com.alura.service.enrollments;
 
 import br.com.alura.dto.enrollments.EnrollmentRegisterDTO;
 import br.com.alura.entity.courses.Courses;
+import br.com.alura.entity.enrollments.Enrollments;
 import br.com.alura.enums.StatusEnum;
 import br.com.alura.exceptions.enrollments.InactiveCourseException;
 import br.com.alura.exceptions.enrollments.UserAlreadyEnrolledInCourseException;
@@ -52,5 +53,11 @@ public class EnrollmentsService {
         if (courses.getStatus().equals(StatusEnum.INACTIVE)) {
             throw new InactiveCourseException("Course is inactive");
         }
+    }
+
+    public Enrollments findEnrollmentByUserIdAndCourseId(Integer userId, Integer courseId) {
+        var enrollment = enrollmentsRepository.findEnrollmentByCoursesIdAndUsersId(courseId, userId);
+
+        return enrollment;
     }
 }
