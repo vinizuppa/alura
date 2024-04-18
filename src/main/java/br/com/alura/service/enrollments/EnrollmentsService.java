@@ -41,7 +41,7 @@ public class EnrollmentsService {
     }
 
     private void validateUserIsEnrolled(Integer userId, Integer courseId) {
-        var enrollment = enrollmentsRepository.findEnrollmentByCoursesIdAndUsersId(userId, courseId);
+        var enrollment = enrollmentsRepository.findEnrollmentByCoursesIdAndUsersId(courseId, userId);
 
         if (enrollment != null) {
             throw new UserAlreadyEnrolledInCourseException("User is already enrolled");
