@@ -3,10 +3,12 @@ package br.com.alura.service.courseEvaluation;
 import br.com.alura.dto.courseEvaluation.CourseEvaluationRegisterDTO;
 import br.com.alura.exceptions.courseEvaluation.UserNotEnrolledInCourseException;
 import br.com.alura.exceptions.enrollments.UserAlreadyEnrolledInCourseException;
+import br.com.alura.factory.courseEvaluation.CourseEvaluationFactory;
 import br.com.alura.repository.courseEvaluation.CourseEvaluationRepository;
 import br.com.alura.service.courses.CoursesService;
 import br.com.alura.service.enrollments.EnrollmentsService;
 import br.com.alura.service.users.UsersService;
+import br.com.alura.utils.FunctionUtils;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -27,14 +29,15 @@ public class CourseEvaluationService {
     }
 
     public void registerCourseEvaluation(CourseEvaluationRegisterDTO courseEvaluationRegisterDTO) {
-        //TODO Capture logged-in user
-//        var userEntity = usersService.findUserById();
+        var userEntity = FunctionUtils.getLoggedUser();
         var courseEntity = coursesService.findCourseById(courseEvaluationRegisterDTO.courseId());
 
-        //TODO fix userId
-        this.validateUserEnrolledInTheCourse(0, courseEntity.getId());
-        this.validateUserHasAlreadyEvaluated(0, courseEntity.getId());
+        this.validateUserEnrolledInTheCourse(userEntity.getId(), courseEntity.getId());
+        this.validateUserHasAlreadyEvaluated(userEntity.getId(), courseEntity.getId());
 
+        var courseEvalutionEntity = CourseEvaluationFactory.createCourseEvaluationEntity(courseEvaluationRegisterDTO, courseEntity, userEntity);
+
+        courseEvaluationRepository.save(courseEvalutionEntity);
     }
 
     private void validateUserHasAlreadyEvaluated(Integer userId, Integer courseId) {
