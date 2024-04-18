@@ -7,6 +7,7 @@ import br.com.alura.exceptions.users.UserNotFoundException;
 import br.com.alura.factory.users.UserDTOFactory;
 import br.com.alura.factory.users.UsersFactory;
 import br.com.alura.repository.users.UsersRepository;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -42,5 +43,9 @@ public class UsersService {
         }
 
         return userEntity.get();
+    }
+
+    public UserDetails findUserDetailsByUsername(String username) {
+        return usersRepository.findByUsername(username);
     }
 }

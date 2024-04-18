@@ -17,12 +17,6 @@ public class UsersController {
         this.usersService = usersService;
     }
 
-    @PostMapping()
-    public ResponseEntity<?> registerUser(@Valid @RequestBody UserRegisterDTO userRegisterDTO) {
-        usersService.registerUser(userRegisterDTO);
-        return ResponseEntity.status(HttpStatus.CREATED).body("TODO");
-    }
-
     @GetMapping()
     public ResponseEntity<?> findUserByUsername(@RequestParam String username) {
         return ResponseEntity.status(HttpStatus.CREATED).body(usersService.findUserByUsername(username));

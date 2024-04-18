@@ -4,9 +4,14 @@ import br.com.alura.enums.RoleEnum;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -15,7 +20,7 @@ import java.time.ZoneId;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Users {
+public class Users implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -42,5 +47,41 @@ public class Users {
     @PrePersist
     private void prePersist() {
         creationDate = LocalDate.now(ZoneId.of("America/Sao_Paulo"));
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        if (this.role == RoleEnum.ADMIN) {
+            return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"));
+        } else if (this.role == RoleEnum.INSTRUCTOR) {
+            return List.of(new SimpleGrantedAuthority("ROLE_INSTRUCTOR"));
+        } else {
+            return List.of(new SimpleGrantedAuthority("ROLE_STUDENT"));
+        }
+    }
+
+    @Override
+    public String getUsername() {
+        return username;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 }
