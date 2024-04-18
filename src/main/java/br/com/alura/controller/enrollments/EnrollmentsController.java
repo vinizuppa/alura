@@ -22,6 +22,6 @@ public class EnrollmentsController {
     @PostMapping()
     public ResponseEntity<?> registerEnrollment(@Valid @RequestBody EnrollmentRegisterDTO courseRegisterDTO) {
         enrollmentsService.registerEnrollment(courseRegisterDTO);
-        return ResponseEntity.status(HttpStatus.CREATED).body("TODO");
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 }

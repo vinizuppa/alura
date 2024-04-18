@@ -21,13 +21,13 @@ public class CoursesController {
     @PostMapping()
     public ResponseEntity<?> registerCourse(@Valid @RequestBody CourseRegisterDTO courseRegisterDTO) {
         coursesService.registerCourse(courseRegisterDTO);
-        return ResponseEntity.status(HttpStatus.CREATED).body("TODO");
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @PutMapping()
     public ResponseEntity<?> deactivateCourse(@RequestParam String courseCode) {
         coursesService.deactivateCourse(courseCode);
-        return ResponseEntity.status(HttpStatus.OK).body("TODO");
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 
     @GetMapping()

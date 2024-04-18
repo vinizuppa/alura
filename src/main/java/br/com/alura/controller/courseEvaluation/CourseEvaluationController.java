@@ -23,6 +23,6 @@ public class CourseEvaluationController {
     @PostMapping()
     public ResponseEntity<?> registerCourseEvaluation(@Valid @RequestBody CourseEvaluationRegisterDTO courseEvaluationRegisterDTO) {
         courseEvaluationService.registerCourseEvaluation(courseEvaluationRegisterDTO);
-        return ResponseEntity.status(HttpStatus.CREATED).body("TODO");
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 }
