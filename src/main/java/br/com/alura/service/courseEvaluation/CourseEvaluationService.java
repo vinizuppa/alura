@@ -13,6 +13,8 @@ import br.com.alura.service.users.UsersService;
 import br.com.alura.utils.FunctionUtils;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CourseEvaluationService {
     private final CourseEvaluationRepository courseEvaluationRepository;
@@ -66,5 +68,9 @@ public class CourseEvaluationService {
                     "Detracting Evaluation for Course: " + courseEvaluation.getCourses().getName(),
                             "Score: " + courseEvaluation.getScore() + "|" + "Reason: " + courseEvaluation.getReason());
         }
+    }
+
+    public List<CourseEvaluation> getAllCourseEvaluationsForNpsCalculator() {
+        return courseEvaluationRepository.getAllCourseEvaluationsForNpsCalculator();
     }
 }
