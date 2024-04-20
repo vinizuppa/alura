@@ -51,12 +51,13 @@ public class Users implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        if (this.role == RoleEnum.ADMIN) {
-            return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"));
-        } else if (this.role == RoleEnum.INSTRUCTOR) {
-            return List.of(new SimpleGrantedAuthority("ROLE_INSTRUCTOR"));
-        } else {
-            return List.of(new SimpleGrantedAuthority("ROLE_STUDENT"));
+        switch (this.role) {
+            case ADMIN:
+                return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"));
+            case INSTRUCTOR:
+                return List.of(new SimpleGrantedAuthority("ROLE_INSTRUCTOR"));
+            default:
+                return List.of(new SimpleGrantedAuthority("ROLE_STUDENT"));
         }
     }
 
