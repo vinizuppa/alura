@@ -51,14 +51,18 @@ public class Users implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        switch (this.role) {
-            case ADMIN:
-                return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"));
-            case INSTRUCTOR:
-                return List.of(new SimpleGrantedAuthority("ROLE_INSTRUCTOR"));
-            default:
-                return List.of(new SimpleGrantedAuthority("ROLE_STUDENT"));
+        if (this.role != null) {
+            switch (this.role) {
+                case ADMIN:
+                    return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"));
+                case INSTRUCTOR:
+                    return List.of(new SimpleGrantedAuthority("ROLE_INSTRUCTOR"));
+                default:
+                    return List.of(new SimpleGrantedAuthority("ROLE_STUDENT"));
+            }
         }
+
+        return null;
     }
 
     @Override
