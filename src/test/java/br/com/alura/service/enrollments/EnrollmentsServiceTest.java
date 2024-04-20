@@ -104,6 +104,6 @@ class EnrollmentsServiceTest {
     }
 
     public void populateEnrollmentRegisterDTO() {
-        enrollmentRegisterDTO = new EnrollmentRegisterDTO(1, 1);
+        enrollmentRegisterDTO = new EnrollmentRegisterDTO(1);
     }
 }
