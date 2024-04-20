@@ -14,6 +14,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+
 @Service
 public class CoursesService {
     private final CoursesRepository coursesRepository;
@@ -42,6 +44,7 @@ public class CoursesService {
     public void deactivateCourse(String courseCode) {
         var courseEntity = this.findCourseByCode(courseCode);
         courseEntity.setStatus(StatusEnum.INACTIVE);
+        courseEntity.setInactivationDate(LocalDate.now());
         coursesRepository.save(courseEntity);
     }
 
