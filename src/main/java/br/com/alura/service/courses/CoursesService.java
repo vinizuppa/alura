@@ -25,15 +25,12 @@ public class CoursesService {
     }
 
     public void registerCourse(CourseRegisterDTO courseRegisterDTO) {
-        try {
-            var instructor = usersService.findUserById(courseRegisterDTO.instructor_id());
-            this.validateUserIsInstructor(instructor);
+        var instructor = usersService.findUserById(courseRegisterDTO.instructor_id());
+        this.validateUserIsInstructor(instructor);
 
-            var courseEntity = CoursesFactory.createCoursesEntity(courseRegisterDTO, instructor);
-            coursesRepository.save(courseEntity);
-        } catch (Exception e) {
-            throw e;
-        }
+        var courseEntity = CoursesFactory.createCoursesEntity(courseRegisterDTO, instructor);
+        coursesRepository.save(courseEntity);
+
     }
 
     private void validateUserIsInstructor(Users users) {
@@ -43,13 +40,9 @@ public class CoursesService {
     }
 
     public void deactivateCourse(String courseCode) {
-        try {
-            var courseEntity = this.findCourseByCode(courseCode);
-            courseEntity.setStatus(StatusEnum.INACTIVE);
-            coursesRepository.save(courseEntity);
-        } catch (Exception e) {
-            throw e;
-        }
+        var courseEntity = this.findCourseByCode(courseCode);
+        courseEntity.setStatus(StatusEnum.INACTIVE);
+        coursesRepository.save(courseEntity);
     }
 
     private Courses findCourseByCode(String courseCode) {

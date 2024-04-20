@@ -28,18 +28,14 @@ public class EnrollmentsService {
     }
 
     public void registerEnrollment(EnrollmentRegisterDTO enrollmentRegisterDTO) {
-        try {
-            var userEntity = FunctionUtils.getLoggedUser();
-            var courseEntity = coursesService.findCourseById(enrollmentRegisterDTO.course_id());
+        var userEntity = FunctionUtils.getLoggedUser();
+        var courseEntity = coursesService.findCourseById(enrollmentRegisterDTO.course_id());
 
-            this.validateUserIsEnrolled(userEntity.getId(), courseEntity.getId());
-            this.validateCourseIsInactive(courseEntity);
+        this.validateUserIsEnrolled(userEntity.getId(), courseEntity.getId());
+        this.validateCourseIsInactive(courseEntity);
 
-            var enrollmentEntity = EnrollmentsFactory.createEnrollmentsEntity(userEntity, courseEntity);
-            enrollmentsRepository.save(enrollmentEntity);
-        } catch (Exception e) {
-            throw e;
-        }
+        var enrollmentEntity = EnrollmentsFactory.createEnrollmentsEntity(userEntity, courseEntity);
+        enrollmentsRepository.save(enrollmentEntity);
     }
 
     private void validateUserIsEnrolled(Integer userId, Integer courseId) {
