@@ -29,7 +29,7 @@ public class SecurityConfigurations {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
-        String[] whitListRoutes = {"/auth/login", "/auth/register"};
+        String[] whitListRoutes = {"/auth/login", "/auth/register", "/swagger-ui/**", "/v3/api-docs/**"};
         String[] blockedRoutesTypeGetAndRoleAdmin = {"/user", "/course"};
         String[] blockedRoutesTypePostAndRoleAdmin = {"/course"};
         String[] blockedRoutesTypePutAndRoleAdmin = {"/course"};

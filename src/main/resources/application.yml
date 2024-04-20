@@ -14,3 +14,9 @@ api:
   security:
     token:
       secret: ${JWT_SECRET:d367ec6ce788f25f51e3749cdd3925cfae17a67d28ccafcfd8f08eb9b3c21be4}
+
+springdoc:
+  show-actuator: true
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui.html

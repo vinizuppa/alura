@@ -4,15 +4,14 @@ import br.com.alura.dto.users.TokenResponseDTO;
 import br.com.alura.dto.users.UserLoginDTO;
 import br.com.alura.dto.users.UserRegisterDTO;
 import br.com.alura.entity.users.Users;
-import br.com.alura.factory.users.UsersFactory;
 import br.com.alura.infra.security.TokenService;
 import br.com.alura.service.users.UsersService;
-import br.com.alura.utils.FunctionUtils;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.security.SecurityRequirements;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,6 +30,7 @@ public class AuthenticationController {
         this.tokenService = tokenService;
     }
 
+    @SecurityRequirements(value = {})
     @PostMapping("/login")
     public ResponseEntity login(@Valid @RequestBody UserLoginDTO userLoginDTO){
         var usernamePassword = new UsernamePasswordAuthenticationToken(userLoginDTO.username(), userLoginDTO.password());
@@ -41,6 +41,7 @@ public class AuthenticationController {
         return ResponseEntity.ok(new TokenResponseDTO(token));
     }
 
+    @SecurityRequirements(value = {})
     @PostMapping("/register")
     public ResponseEntity register(@Valid @RequestBody UserRegisterDTO userRegisterDTO){
         if (usersService.findUserDetailsByUsername(userRegisterDTO.username()) != null) {

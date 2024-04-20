@@ -3,6 +3,7 @@ package br.com.alura.controller.courseEvaluation;
 import br.com.alura.dto.courseEvaluation.CourseEvaluationRegisterDTO;
 import br.com.alura.dto.enrollments.EnrollmentRegisterDTO;
 import br.com.alura.service.courseEvaluation.CourseEvaluationService;
+import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +21,7 @@ public class CourseEvaluationController {
         this.courseEvaluationService = courseEvaluationService;
     }
 
+    @Operation(description = "This endpoint saves evaluation for course")
     @PostMapping()
     public ResponseEntity<?> registerCourseEvaluation(@Valid @RequestBody CourseEvaluationRegisterDTO courseEvaluationRegisterDTO) {
         courseEvaluationService.registerCourseEvaluation(courseEvaluationRegisterDTO);

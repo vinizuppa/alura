@@ -2,6 +2,7 @@ package br.com.alura.controller.enrollments;
 
 import br.com.alura.dto.enrollments.EnrollmentRegisterDTO;
 import br.com.alura.service.enrollments.EnrollmentsService;
+import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +20,7 @@ public class EnrollmentsController {
         this.enrollmentsService = enrollmentsService;
     }
 
+    @Operation(description = "This endpoint saves enrollment for course")
     @PostMapping()
     public ResponseEntity<?> registerEnrollment(@Valid @RequestBody EnrollmentRegisterDTO courseRegisterDTO) {
         enrollmentsService.registerEnrollment(courseRegisterDTO);
