@@ -3,9 +3,11 @@ package br.com.alura.repository.courseEvaluation;
 import br.com.alura.entity.courseEvaluation.CourseEvaluation;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public interface CourseEvaluationRepository extends JpaRepository<CourseEvaluation, Integer> {
     CourseEvaluation findCourseEvaluationByUsersIdAndCoursesId(Integer userId, Integer courseId);
     @Query("SELECT ce FROM CourseEvaluation ce " +
