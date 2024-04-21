@@ -1,4 +1,4 @@
-package br.com.alura.dto.courseEvaluation;
+package br.com.alura.dto.courseEvaluation.v1;
 
 import org.hibernate.validator.constraints.Range;
 

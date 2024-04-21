@@ -1,4 +1,4 @@
-package br.com.alura.dto.nps;
+package br.com.alura.dto.nps.v1;
 
 import br.com.alura.enums.NpsEnum;
 import lombok.*;

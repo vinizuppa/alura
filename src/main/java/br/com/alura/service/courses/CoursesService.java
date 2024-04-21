@@ -1,6 +1,6 @@
 package br.com.alura.service.courses;
 
-import br.com.alura.dto.courses.CourseRegisterDTO;
+import br.com.alura.dto.courses.v1.CourseRegisterDTO;
 import br.com.alura.entity.courses.Courses;
 import br.com.alura.entity.users.Users;
 import br.com.alura.enums.RoleEnum;

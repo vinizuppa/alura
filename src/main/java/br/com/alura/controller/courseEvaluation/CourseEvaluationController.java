@@ -1,7 +1,6 @@
 package br.com.alura.controller.courseEvaluation;
 
-import br.com.alura.dto.courseEvaluation.CourseEvaluationRegisterDTO;
-import br.com.alura.dto.enrollments.EnrollmentRegisterDTO;
+import br.com.alura.dto.courseEvaluation.v1.CourseEvaluationRegisterDTO;
 import br.com.alura.service.courseEvaluation.CourseEvaluationService;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
@@ -13,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/course-evaluation")
+@RequestMapping("v1/course-evaluation")
 public class CourseEvaluationController {
     private final CourseEvaluationService courseEvaluationService;
 

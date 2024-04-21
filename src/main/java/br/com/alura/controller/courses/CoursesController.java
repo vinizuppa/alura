@@ -1,6 +1,6 @@
 package br.com.alura.controller.courses;
 
-import br.com.alura.dto.courses.CourseRegisterDTO;
+import br.com.alura.dto.courses.v1.CourseRegisterDTO;
 import br.com.alura.enums.StatusEnum;
 import br.com.alura.service.courses.CoursesService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -16,7 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/course")
+@RequestMapping("v1/course")
 public class CoursesController {
     private final CoursesService coursesService;
 

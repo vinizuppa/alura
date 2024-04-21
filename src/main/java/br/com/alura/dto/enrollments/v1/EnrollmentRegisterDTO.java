@@ -1,4 +1,4 @@
-package br.com.alura.dto.enrollments;
+package br.com.alura.dto.enrollments.v1;
 
 import jakarta.validation.constraints.NotNull;
 

@@ -1,4 +1,4 @@
-package br.com.alura.dto.courses;
+package br.com.alura.dto.courses.v1;
 
 import br.com.alura.validator.users.CodeValidator;
 import jakarta.validation.constraints.NotBlank;

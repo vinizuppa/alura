@@ -1,6 +1,6 @@
 package br.com.alura.service.enrollments;
 
-import br.com.alura.dto.enrollments.EnrollmentRegisterDTO;
+import br.com.alura.dto.enrollments.v1.EnrollmentRegisterDTO;
 import br.com.alura.entity.courses.Courses;
 import br.com.alura.entity.enrollments.Enrollments;
 import br.com.alura.enums.StatusEnum;

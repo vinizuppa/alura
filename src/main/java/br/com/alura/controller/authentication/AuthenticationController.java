@@ -1,12 +1,11 @@
 package br.com.alura.controller.authentication;
 
-import br.com.alura.dto.users.TokenResponseDTO;
-import br.com.alura.dto.users.UserLoginDTO;
-import br.com.alura.dto.users.UserRegisterDTO;
+import br.com.alura.dto.users.v1.TokenResponseDTO;
+import br.com.alura.dto.users.v1.UserLoginDTO;
+import br.com.alura.dto.users.v1.UserRegisterDTO;
 import br.com.alura.entity.users.Users;
 import br.com.alura.infra.security.TokenService;
 import br.com.alura.service.users.UsersService;
-import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.security.SecurityRequirements;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/auth")
+@RequestMapping("v1/auth")
 public class AuthenticationController {
     private final AuthenticationManager authenticationManager;
     private final UsersService usersService;

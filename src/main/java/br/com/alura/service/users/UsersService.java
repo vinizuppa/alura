@@ -1,7 +1,7 @@
 package br.com.alura.service.users;
 
-import br.com.alura.dto.users.UserRegisterDTO;
-import br.com.alura.dto.users.UserSimpleResponseDTO;
+import br.com.alura.dto.users.v1.UserRegisterDTO;
+import br.com.alura.dto.users.v1.UserSimpleResponseDTO;
 import br.com.alura.entity.users.Users;
 import br.com.alura.exceptions.users.UserNotFoundException;
 import br.com.alura.factory.users.UserDTOFactory;

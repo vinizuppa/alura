@@ -1,6 +1,6 @@
 package br.com.alura.service.courseEvaluation;
 
-import br.com.alura.dto.courseEvaluation.CourseEvaluationRegisterDTO;
+import br.com.alura.dto.courseEvaluation.v1.CourseEvaluationRegisterDTO;
 import br.com.alura.entity.courseEvaluation.CourseEvaluation;
 import br.com.alura.entity.courses.Courses;
 import br.com.alura.entity.enrollments.Enrollments;
@@ -10,7 +10,6 @@ import br.com.alura.repository.courseEvaluation.CourseEvaluationRepository;
 import br.com.alura.service.courses.CoursesService;
 import br.com.alura.service.enrollments.EnrollmentsService;
 import br.com.alura.service.users.UsersService;
-import net.bytebuddy.asm.Advice;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

@@ -1,6 +1,6 @@
 package br.com.alura.service.nps;
 
-import br.com.alura.dto.nps.NpsResponseDTO;
+import br.com.alura.dto.nps.v1.NpsResponseDTO;
 import br.com.alura.entity.courseEvaluation.CourseEvaluation;
 import br.com.alura.entity.courses.Courses;
 import br.com.alura.enums.NpsEnum;

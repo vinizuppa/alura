@@ -1,6 +1,6 @@
 package br.com.alura.service.courseEvaluation;
 
-import br.com.alura.dto.courseEvaluation.CourseEvaluationRegisterDTO;
+import br.com.alura.dto.courseEvaluation.v1.CourseEvaluationRegisterDTO;
 import br.com.alura.entity.courseEvaluation.CourseEvaluation;
 import br.com.alura.entity.emailSender.EmailSender;
 import br.com.alura.exceptions.courseEvaluation.UserNotEnrolledInCourseException;

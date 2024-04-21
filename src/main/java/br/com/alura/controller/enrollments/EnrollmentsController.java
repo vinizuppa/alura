@@ -1,6 +1,6 @@
 package br.com.alura.controller.enrollments;
 
-import br.com.alura.dto.enrollments.EnrollmentRegisterDTO;
+import br.com.alura.dto.enrollments.v1.EnrollmentRegisterDTO;
 import br.com.alura.service.enrollments.EnrollmentsService;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/enrollment")
+@RequestMapping("v1/enrollment")
 public class EnrollmentsController {
     private final EnrollmentsService enrollmentsService;
 

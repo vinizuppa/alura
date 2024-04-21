@@ -1,6 +1,6 @@
 package br.com.alura.factory.users;
 
-import br.com.alura.dto.users.UserRegisterDTO;
+import br.com.alura.dto.users.v1.UserRegisterDTO;
 import br.com.alura.entity.users.Users;
 import br.com.alura.utils.FunctionUtils;
 

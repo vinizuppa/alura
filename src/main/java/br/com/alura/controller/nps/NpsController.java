@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/nps")
+@RequestMapping("v1/nps")
 public class NpsController {
     private final NpsService npsService;
 

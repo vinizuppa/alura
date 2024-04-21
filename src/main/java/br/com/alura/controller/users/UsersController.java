@@ -1,16 +1,16 @@
 package br.com.alura.controller.users;
 
-import br.com.alura.dto.users.UserRegisterDTO;
-import br.com.alura.dto.users.UserSimpleResponseDTO;
 import br.com.alura.service.users.UsersService;
 import io.swagger.v3.oas.annotations.Operation;
-import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("v1/user")
 public class UsersController {
     private final UsersService usersService;
 

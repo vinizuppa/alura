@@ -29,10 +29,10 @@ public class SecurityConfigurations {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
-        String[] whitListRoutes = {"/auth/login", "/auth/register", "/swagger-ui/**", "/v3/api-docs/**"};
-        String[] blockedRoutesTypeGetAndRoleAdmin = {"/user", "/course"};
-        String[] blockedRoutesTypePostAndRoleAdmin = {"/course"};
-        String[] blockedRoutesTypePutAndRoleAdmin = {"/course"};
+        String[] whitListRoutes = {"v1/auth/login", "v1/auth/register", "/swagger-ui/**", "/v3/api-docs/**"};
+        String[] blockedRoutesTypeGetAndRoleAdmin = {"v1/user", "v1/course"};
+        String[] blockedRoutesTypePostAndRoleAdmin = {"v1/course"};
+        String[] blockedRoutesTypePutAndRoleAdmin = {"v1/course"};
 
         return httpSecurity
                 .csrf(csrf -> csrf.disable())

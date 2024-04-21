@@ -1,4 +1,4 @@
-package br.com.alura.dto.users;
+package br.com.alura.dto.users.v1;
 
 import br.com.alura.enums.RoleEnum;
 import lombok.Builder;
