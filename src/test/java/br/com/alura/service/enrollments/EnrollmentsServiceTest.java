@@ -17,6 +17,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDate;
 
@@ -41,6 +44,7 @@ class EnrollmentsServiceTest {
         this.populateCourseEntityInactive();
         this.populateCourseEntityActive();
         this.populateUserRoleInstructor();
+        this.fillLoggedInUser();
         this.populateEnrollment();
         this.populateEnrollmentRegisterDTO();
     }
@@ -103,6 +107,12 @@ class EnrollmentsServiceTest {
         enrollmentEntity.setId(1);
     }
 
+    private void fillLoggedInUser() {
+        UserDetails user = userEntity;
+
+        var authentication = new UsernamePasswordAuthenticationToken(user, null, null);
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+    }
     public void populateEnrollmentRegisterDTO() {
         enrollmentRegisterDTO = new EnrollmentRegisterDTO(1);
     }
